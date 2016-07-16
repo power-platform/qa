@@ -5949,4 +5949,5 @@ textarea {
 .panel-big-display {
   padding: 30px 10px;
   background: #337ab7;
-  color: #fff; }
+  color: #fff;
+  font-weight: bold; }
