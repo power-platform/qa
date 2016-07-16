@@ -14,7 +14,7 @@ exports.up = function(knex, Promise) {
       table.string('answer');
       table.string('answer-nepali');
       table.string('answer-hindi');
-      table.uuid('question_id')
+      table.integer('question_id')
         .references('id')
         .inTable('questions')
         .notNullable();
