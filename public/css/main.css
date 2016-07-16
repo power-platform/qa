@@ -5937,3 +5937,16 @@ textarea {
   border-radius: 2px;
   letter-spacing: 0.2em;
   text-transform: uppercase; }
+
+.center {
+  marign: 0 auto;
+  width: 100%;
+  text-align: center; }
+
+.row-block-nav {
+  margin-top: 30px; }
+
+.panel-big-display {
+  padding: 30px 10px;
+  background: #337ab7;
+  color: #fff; }

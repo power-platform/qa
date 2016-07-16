@@ -1,57 +1,82 @@
 <div class="container-fluid">
   {{#if messages.success}}
-    <div role="alert" class="alert alert-success">
-      {{#each messages.success}}
-        <div>{{msg}}</div>
-      {{/each}}
-    </div>
+  <div role="alert" class="alert alert-success">
+    {{#each messages.success}}
+    <div>{{msg}}</div>
+    {{/each}}
+  </div>
   {{/if}}
   {{#if messages.error}}
-    <div role="alert" class="alert alert-danger">
-      {{#each messages.error}}
-        <div>{{msg}}</div>
-      {{/each}}
-    </div>
+  <div role="alert" class="alert alert-danger">
+    {{#each messages.error}}
+    <div>{{msg}}</div>
+    {{/each}}
+  </div>
   {{/if}}
   {{#if messages.info}}
-    <div role="alert" class="alert alert-info">
-      {{#each messages.info}}
-        <div>{{msg}}</div>
-      {{/each}}
-    </div>
+  <div role="alert" class="alert alert-info">
+    {{#each messages.info}}
+    <div>{{msg}}</div>
+    {{/each}}
+  </div>
   {{/if}}
+
   <div class="row">
-    <div class="col-sm-4">
-      <div class="panel">
-        <div class="panel-body">
-          <h3>Heading</h3>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris
-            condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod.
-            Donec sed odio dui.</p>
-          <a href="#" role="button" class="btn btn-default">View details</a>
-        </div>
+    <div class="col-sm-12 pull-right">
+      <ul class="nav nav-pills">
+        <li role="presentation" class="active"><a href="#">English</a></li>
+        <li role="presentation"><a href="#">नेपाली</a></li>
+        <li role="presentation"><a href="#">हिन्दी</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12 center">
+      <h1>Ask a question</h1>
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Add a question here..">
+            <span class="input-group-btn">
+              <button class="btn btn-default" type="button">Go!</button>
+            </span>
+          </div><!-- /input-group -->
+        </div><!-- /.col-lg-6 -->
+      </div><!-- /.row -->
+    </div> 
+  </div>
+
+  <div class="row row-block-nav">
+    <div class="col-xs-4">
+      <div class="panel panel-big-display center">
+        Learn Skill
       </div>
     </div>
-    <div class="col-sm-4">
-      <div class="panel">
-        <div class="panel-body">
-          <h3>Heading</h3>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris
-            condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod.
-            Donec sed odio dui.</p>
-          <a href="#" role="button" class="btn btn-default">View details</a>
-        </div>
+
+    <div class="col-xs-4">
+      <div class="panel panel-big-display center">
+        Learn Skill
       </div>
     </div>
-    <div class="col-sm-4">
-      <div class="panel">
-        <div class="panel-body">
-          <h3>Heading</h3>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris
-            condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod.
-            Donec sed odio dui.</p>
-          <a href="#" role="button" class="btn btn-default">View details</a>
-        </div>
+    <div class="col-xs-4">
+      <div class="panel panel-big-display center">
+        Learn Skill
+      </div>
+    </div>
+    <div class="col-xs-4">
+      <div class="panel panel-big-display center">
+        Learn Skill
+      </div>
+    </div>
+    <div class="col-xs-4">
+      <div class="panel panel-big-display center">
+        Learn Skill
+      </div>
+    </div>
+    <div class="col-xs-4">
+      <div class="panel panel-big-display center">
+        Learn Skill
       </div>
     </div>
   </div>
