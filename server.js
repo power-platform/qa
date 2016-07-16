@@ -18,6 +18,7 @@ dotenv.load();
 var HomeController = require('./controllers/home');
 var userController = require('./controllers/user');
 var contactController = require('./controllers/contact');
+var questionController = require('./controllers/question');
 
 // Passport OAuth strategies
 require('./config/passport');
@@ -79,6 +80,10 @@ app.get('/auth/facebook', passport.authenticate('facebook', { scope: ['email', '
 app.get('/auth/facebook/callback', passport.authenticate('facebook', { successRedirect: '/', failureRedirect: '/login' }));
 app.get('/auth/google', passport.authenticate('google', { scope: 'profile email' }));
 app.get('/auth/google/callback', passport.authenticate('google', { successRedirect: '/', failureRedirect: '/login' }));
+
+
+// Questions route
+app.get('/question', questionController.index);
 
 // Production error handler
 if (app.get('env') === 'production') {
