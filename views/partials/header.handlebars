@@ -10,33 +10,61 @@
       <a href="/" class="navbar-brand">AnswerIt!</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
-    <ul class="nav navbar-nav navbar-right">
-    {{#if user}}
-      <li class="dropdown">
-        <a href="#" data-toggle="dropdown" class="navbar-avatar dropdown-toggle">
-          {{#if user.picture}}
+      <ul class="nav navbar-nav navbar-right">
+        {{#if user}}
+        <li class="dropdown">
+          <a href="#" data-toggle="dropdown" class="navbar-avatar dropdown-toggle">
+            {{#if user.picture}}
             <img src="{{user.picture}}">
-          {{else}}
+            {{else}}
             <img src="{{user.gravatar}}">
-          {{/if}}
-          {{#if user.name}}
+            {{/if}}
+            {{#if user.name}}
             {{user.name}}
-          {{else}}
+            {{else}}
             {{user.email}}
-          {{/if}}
-          <i class="caret"></i>
-        </a>
-        <ul class="dropdown-menu">
-          <li><a href="/account">My Account</a></li>
-          <li class="divider"></li>
-          <li><a href="/logout">Logout</a></li>
-        </ul>
-      </li>
-    {{else}}
-      <li class="{{#ifeq title 'Log in'}}active{{/ifeq}}"><a href="/login">Log in</a></li>
-      <li class="{{#ifeq title 'Sign up'}}active{{/ifeq}}"><a href="/signup">Sign up</a></li>
-    {{/if}}
-    </ul>
+            {{/if}}
+            <i class="caret"></i>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="/account">My Account</a></li>
+            <li class="divider"></li>
+            <li><a href="/logout">Logout</a></li>
+          </ul>
+        </li>
+        {{else}}
+        <li class="{{#ifeq title 'Log in'}}active{{/ifeq}}"><a href="/login">Log in</a></li>
+        <li class="{{#ifeq title 'Sign up'}}active{{/ifeq}}"><a href="/signup">Sign up</a></li>
+        {{/if}}
+      </ul>
     </div>
   </div>
 </nav>
+
+<div class="container">
+<div class="row">
+  <div class="col-xs-4 col-md-2">
+    <div class="input-group">
+      <span class="input-group-btn">
+        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+      </span>
+      <input type="text" class="form-control" placeholder="Search questions...">
+    </div><!-- /input-group -->
+  </div>
+  <div class="col-xs-4 col-sm-6 col-lg-6">
+    <div class="input-group">
+      <span class="input-group-btn">
+        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+      </span>
+      <input type="text" class="form-control" placeholder="Ask another question...">
+    </div><!-- /input-group -->
+  </div>
+  <div class="col-md-4 col-lg-4">
+    <ul class="nav nav-pills pull-right">
+      <li role="presentation" class="active"><a href="#">English</a></li>
+      <li role="presentation"><a href="#">नेपाली</a></li>
+      <li role="presentation"><a href="#">हिन्दी</a></li>
+    </ul>
+  </div>
+</div>
+</div>
