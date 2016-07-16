@@ -1,3 +1,5 @@
 $(function() {
-  // Your custom JavaScript goes here
+	$( "#homepage-question-form" ).keypress(function() {
+		$(this).attr("rows", "10");
+	});
 });
