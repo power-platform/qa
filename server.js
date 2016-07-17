@@ -84,6 +84,7 @@ app.get('/auth/google/callback', passport.authenticate('google', { successRedire
 
 // Questions route
 app.get('/question', questionController.index);
+app.post('/question/new', questionController.index);
 
 // Production error handler
 if (app.get('env') === 'production') {

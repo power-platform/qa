@@ -21,6 +21,9 @@ function getRelateds(req) {
   ]
 }
 
+/**
+ * GET /question
+ */
 exports.index = function(req, res) {
   Promise.all([
       getQuestion(req),
@@ -36,4 +39,34 @@ exports.index = function(req, res) {
   }).catch(function (error) {
     res.render('question', defaultValues);
   });
+};
+
+/**
+ * POST /question/new
+ */
+exports.createQuestion = function(req, res) {
+    req.assert('text', 'You must as question to continue').notEmpty();
+
+    var errors = req.validationErrors();
+
+    if (errors) {
+        req.flash('error', errors);
+        return res.redirect('/question/');
+    }
+
+    if(!user) {
+        req.flash('error', 'You must be logged in');
+        return res.redirect('/');
+    }
+
+    var question = new Question({
+        title: req.title,
+        tags: req.tags
+    });
+
+    if(user) {
+        question.save();
+        req.flash('Your question has been saved');
+    }
+
 };
