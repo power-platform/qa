@@ -10,25 +10,20 @@ var Tag = bookshelf.Model.extend({
     return this.belongsToMany(Question);
   },
   text: function() {
-    return this.hasOne(Translation);
+    return this.hasOne(Translation, 'tag_text');
   }
 });
 
 var Question = bookshelf.Model.extend({
   tableName: 'questions',
-  hasTimestamps: true,
   text: function() {
-    return this.hasOne(Translation);
+    return this.hasOne(Translation, 'question_text');
   },
   answers: function() {
     return this.hasMany(Answer);
   },
-
   tags: function() {
     return this.belongsToMany(Tag);
-  },
-
-  initialize: function() {
   },
 });
 
@@ -36,7 +31,7 @@ var Answer = bookshelf.Model.extend({
   tableName: 'answers',
   hasTimestamps: true,
   text: function() {
-    return this.hasOne(Translation);
+    return this.hasOne(Translation, 'answer_text');
   },
   question: function() {
     return this.belongsTo(Question);
@@ -45,5 +40,7 @@ var Answer = bookshelf.Model.extend({
 
 module.exports = {
   Question: Question,
-  Answer: Answer
+  Answer: Answer,
+  Translation: Translation,
+  Tag: Tag,
 };

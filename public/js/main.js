@@ -23,10 +23,12 @@ $(function() {
 			type: "POST",
 			url: "/question/new",
 			data: {
-				text: $("homepage-question-form").val(),
+				text: $("#homepage-question-form").val(),
 				tags: [],
 			},
-		});
+		}).success(function (resp) {
+      console.log(resp);
+    });
 	});
 
 });

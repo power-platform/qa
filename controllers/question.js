@@ -25,34 +25,38 @@ function getRelateds(tags) {
  */
 exports.index = function(req, res) {
   new model.Question({id: req.query.id})
-    .fetch()
+    .fetch({withRelated: ['text']})
     .then(function (question) {
-      getRelateds(question.tags)
-        .then(function (relateds) {
-          res.render('question', {
-            title: 'Question',
-            question: question,
-            answers: question.answers,
-            relateds: getRelated(tags),
-          });
-        })
-        .catch(function (reason) {
-          res.render('question', {
-            title: 'Question',
-            question: question,
-            answers: question.answers,
-          });
-        });
+      res.render('question', {
+        title: 'Question',
+        question: question.related('text'),
+        answers: question.related('answers'),
+      });
     }).catch(function (reason) {
-      res.render('question', defaultValues);
+      res.render('question', {
+        messages: {
+          error: reason,
+        }
+      });
     });
 };
+
+function makeTags(tags) {
+  ts = [];
+  if (typeof tags === 'undefined') {
+    return ts;
+  }
+  for (var i = 0; i < tags.length; i++) {
+    ts.push(new question.Tag({id: tags[i]}));
+  }
+  return ts;
+}
 
 /**
  * POST /question/new
  */
 exports.createQuestion = function(req, res) {
-    req.assert('text', 'You must as question to continue').notEmpty();
+    req.assert('text', 'You must ask a question to continue').notEmpty();
 
     var errors = req.validationErrors();
 
@@ -66,30 +70,35 @@ exports.createQuestion = function(req, res) {
         return res.redirect('/');
     }
 
-    var question = new Question({
-        title: req.title,
-        tags: req.tags
+    model.Translation.forge({
+      english: req.text,
+    })
+    .save()
+    .then(function (translation) {
+      return model.Question.forge({
+        question_text: translation.get('id'),
+      })
+      .save()
+      .then(function (question) {
+        res.redirect('/question?id=' + question.get('id'));
+      });
     });
-
-    question.save();
-    req.flash('Your question has been saved');
-    res.redirect('/question?id=' + question.id);
 };
 
 exports.createAnswer = function(req, res) {
-  req.assert('text', 'You must provide an answer to continue').notEmpty();
+req.assert('text', 'You must provide an answer to continue').notEmpty();
 
-  var errors = req.validationErrors();
+var errors = req.validationErrors();
 
-  if (errors) {
-    req.flash('error', errors);
-    return res.redirect('/question/');
-  }
-  
-  if (!req.user) {
-    req.flash('error', 'You must be logged in');
-    return res.redirect('/');
-  }
+if (errors) {
+  req.flash('error', errors);
+  return res.redirect('/question/');
+}
+
+if (!req.user) {
+  req.flash('error', 'You must be logged in');
+  return res.redirect('/');
+}
 
   var answer = new model.Answer({
     text: req.title,
