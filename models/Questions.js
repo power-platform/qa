@@ -9,16 +9,10 @@ var Tag = bookshelf.Model.extend({
   questions: function() {
     return this.belongsToMany(Question);
   },
-  text: function() {
-    return this.hasOne(Translation, 'tag_text');
-  }
 });
 
 var Question = bookshelf.Model.extend({
   tableName: 'questions',
-  text: function() {
-    return this.hasOne(Translation, 'question_text');
-  },
   answers: function() {
     return this.hasMany(Answer);
   },
@@ -30,9 +24,6 @@ var Question = bookshelf.Model.extend({
 var Answer = bookshelf.Model.extend({
   tableName: 'answers',
   hasTimestamps: true,
-  text: function() {
-    return this.hasOne(Translation, 'answer_text');
-  },
   question: function() {
     return this.belongsTo(Question);
   }

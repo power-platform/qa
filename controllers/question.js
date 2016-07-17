@@ -25,13 +25,22 @@ function getRelateds(tags) {
  */
 exports.index = function(req, res) {
   new model.Question({id: req.query.id})
-    .fetch({withRelated: ['text']})
+    .fetch({withRelated: ['answers']})
     .then(function (question) {
-      res.render('question', {
+      return Promise.all([
+          Promise.resolve(question),
+          new model.Translation({id: question.get('translation_id')}).fetch()
+      ]);
+    })
+    .then(function (values) {
+      var question = values[0];
+      var translation = values[1];
+      var foo = {
         title: 'Question',
-        question: question.related('text'),
+        question: translation.get('english'),
         answers: question.related('answers'),
-      });
+      };
+      res.render('question', foo);
     }).catch(function (reason) {
       res.render('question', {
         messages: {
@@ -71,12 +80,12 @@ exports.createQuestion = function(req, res) {
     }
 
     model.Translation.forge({
-      english: req.text,
+      english: req.body.text,
     })
     .save()
     .then(function (translation) {
       return model.Question.forge({
-        question_text: translation.get('id'),
+        translation_id: translation.get('id'),
       })
       .save()
       .then(function (question) {
@@ -86,27 +95,28 @@ exports.createQuestion = function(req, res) {
 };
 
 exports.createAnswer = function(req, res) {
-req.assert('text', 'You must provide an answer to continue').notEmpty();
+  req.assert('text', 'You must provide an answer to continue').notEmpty();
 
-var errors = req.validationErrors();
+  var errors = req.validationErrors();
 
-if (errors) {
-  req.flash('error', errors);
-  return res.redirect('/question/');
-}
+  if (errors) {
+    req.flash('error', errors);
+    return res.redirect('/question/');
+  }
 
-if (!req.user) {
-  req.flash('error', 'You must be logged in');
-  return res.redirect('/');
-}
+  if (!req.user) {
+    req.flash('error', 'You must be logged in');
+    return res.redirect('/');
+  }
 
-  var answer = new model.Answer({
-    text: req.title,
-    question: new model.Question({
-      id: req.query.qid,
-    }),
+  model.Translation.forge({
+    english: req.body.text,
+  })
+  .save()
+  .then(function (translation) {
+    return model.Question.forge({
+      translation_id: translation.get('id'),
+    })
+    .save()
   });
-
-  answer.save();
-  req.flash('Your answer has been saved');
 }

@@ -28,13 +28,13 @@
       <div class="date center">Posted: 12th July 2014</div>
       <hr>
       <div class="details center">
-      <p>{{question.english}}</p>
+      <p>{{question}}</p>
       <p>Want to <a href="">add a translation</a>?</p>
       </div>
       <hr>
       <div class="answers center">
-        {{#if answers}}
-          {{#each answers}}
+        {{#if answers.models}}
+          {{#each answers.models}}
             <div class="answer center">
               <p>{{answer}}</p>
               <p>Want to <a href="">add a translation</a>?</p>

@@ -7,7 +7,7 @@ exports.up = function(knex, Promise) {
       table.string('hindi');
     }).createTable('questions', function(table) {
       table.increments('id').primary();
-      table.integer('question_text')
+      table.integer('translation_id')
         .references('id')
         .inTable('translations');
       table.string('question_english');
@@ -18,7 +18,7 @@ exports.up = function(knex, Promise) {
     }).createTable('answers', function(table) {
       table.increments('id').primary();
       table.string('answer_english');
-      table.integer('answer_text')
+      table.integer('translation_id')
         .references('id')
         .inTable('translations');
       table.integer('question_id')
@@ -29,7 +29,7 @@ exports.up = function(knex, Promise) {
     }).createTable('tags', function(table) {
       table.increments('id').primary();
       table.string('tag_english');
-      table.integer('tag_text')
+      table.integer('translation_id')
         .references('id')
         .inTable('translations');
     }).createTable('questions_tags', function(table) {
