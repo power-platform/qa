@@ -10,12 +10,14 @@ exports.up = function(knex, Promise) {
       table.integer('question_text')
         .references('id')
         .inTable('translations');
+      table.string('question_english');
       table.string('location');
       table.string('category');
       table.string('picture');
       table.timestamps();
     }).createTable('answers', function(table) {
       table.increments('id').primary();
+      table.string('answer_english');
       table.integer('answer_text')
         .references('id')
         .inTable('translations');
@@ -26,11 +28,11 @@ exports.up = function(knex, Promise) {
       table.timestamps();
     }).createTable('tags', function(table) {
       table.increments('id').primary();
+      table.string('tag_english');
       table.integer('tag_text')
         .references('id')
         .inTable('translations');
     }).createTable('questions_tags', function(table) {
-      table.increments('id').primary();
       table.integer('question_id')
         .references('id')
         .inTable('questions');
