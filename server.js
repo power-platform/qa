@@ -82,6 +82,7 @@ app.get('/auth/facebook/callback', passport.authenticate('facebook', { successRe
 app.get('/auth/google', passport.authenticate('google', { scope: 'profile email' }));
 app.get('/auth/google/callback', passport.authenticate('google', { successRedirect: '/', failureRedirect: '/login' }));
 app.get("/", function(req,res){return res.render("landing");})
+app.get("/search", function(req,res){return res.send("<h2>Search not implemented. Please check back lager :-(</h2>")})
 
 // Questions route
 app.get('/question', questionController.index);
