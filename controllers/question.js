@@ -89,7 +89,7 @@ exports.createQuestion = function(req, res) {
       })
       .save()
       .then(function (question) {
-        res.redirect('/question?id=' + question.get('id'));
+        res.json({id: question.get('id')});
       });
     });
 };

@@ -27,7 +27,7 @@ $(function() {
 				tags: [],
 			},
 		}).success(function (resp) {
-      console.log(resp);
+      window.location = '/question?id=' + resp.id;
     });
 	});
 
