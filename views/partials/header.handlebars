@@ -61,9 +61,7 @@
   </div>
   <div class="col-md-4 col-lg-4">
     <ul class="nav nav-pills pull-right">
-      <li role="presentation" class="active"><a href="#">English</a></li>
-      <li role="presentation"><a href="#">नेपाली</a></li>
-      <li role="presentation"><a href="#">हिन्दी</a></li>
+      {{#each languages.primary}}<li role="presentation"{{#if active}} class="active"{{/if}}><a href="#">{{language}}</a></li>{{/each}}
     </ul>
   </div>
 </div>

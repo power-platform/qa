@@ -35,37 +35,14 @@
 
 <div class="container">
   <div class="row row-block-nav">
-    <div class="col-xs-4">
-      <div class="panel panel-big-display center">
-        Learn Skill
+    {{#each skills}}
+      <div class="col-xs-4">
+        <a href="question?id={{id}}">
+          <div class="panel panel-big-display center">
+            {{skill}}
+          </div>
+        </a>
       </div>
-    </div>
-
-    <div class="col-xs-4">
-      <div class="panel panel-big-display center">
-        Learn Skill
-      </div>
-    </div>
-    <div class="col-xs-4">
-      <div class="panel panel-big-display center">
-        Learn Skill
-      </div>
-    </div>
-    <div class="col-xs-4">
-      <div class="panel panel-big-display center">
-        Learn Skill
-      </div>
-    </div>
-    <div class="col-xs-4">
-      <div class="panel panel-big-display center">
-        Learn Skill
-      </div>
-    </div>
-    <div class="col-xs-4">
-      <div class="panel panel-big-display center">
-        Learn Skill
-      </div>
-    </div>
+    {{/each}}
   </div>
-</div>
 </div>
