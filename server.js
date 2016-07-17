@@ -19,6 +19,7 @@ var HomeController = require('./controllers/home');
 var userController = require('./controllers/user');
 var contactController = require('./controllers/contact');
 var questionController = require('./controllers/question');
+var answerController = require('./controllers/answer');
 
 // Passport OAuth strategies
 require('./config/passport');
@@ -85,6 +86,8 @@ app.get('/auth/google/callback', passport.authenticate('google', { successRedire
 // Questions route
 app.get('/question', questionController.index);
 app.post('/question/new', questionController.createQuestion);
+
+app.get('/answer', answerController.index);
 
 // Production error handler
 if (app.get('env') === 'production') {

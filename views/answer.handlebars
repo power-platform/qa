@@ -1,0 +1,34 @@
+<div class="container">
+  {{#if messages.success}}
+  <div role="alert" class="alert alert-success">
+    {{#each messages.success}}
+    <div>{{msg}}</div>
+    {{/each}}
+  </div>
+  {{/if}}
+  {{#if messages.error}}
+  <div role="alert" class="alert alert-danger">
+    {{#each messages.error}}
+    <div>{{msg}}</div>
+    {{/each}}
+  </div>
+  {{/if}}
+  {{#if messages.info}}
+  <div role="alert" class="alert alert-info">
+    {{#each messages.info}}
+    <div>{{msg}}</div>
+    {{/each}}
+  </div>
+  {{/if}}
+
+  <div class="row">
+    <div class="col-md-12">
+    <h2>You are replying to $question</h2>
+      <form>
+        <textarea class="form-control" rows="20"></textarea>
+        <br>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
