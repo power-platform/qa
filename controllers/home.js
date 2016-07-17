@@ -3,14 +3,8 @@ var questions = require('../models/Questions')
  * GET /
  */
 function getSkills(count, req) {
-  var defaults = [
-        {skill: 'Learn Sewing', id: 1},
-        {skill: 'Learn Cooking', id: 2},
-        {skill: 'Learn Typing', id: 3},
-        {skill: 'Learn Self Defense', id: 4},
-        {skill: 'Learn Hairdressing', id: 5},
-        {skill: 'Learn Drawing', id: 6},
-      ];
+  var defaults = require("../models/Skills").list();
+  
   return questions.Question.fetchAll()
     .then(function (questions) {
       var len = Math.min(count, questions.length);
@@ -38,7 +32,7 @@ function getLanguages(count, req) {
     primary: [
       {language: 'English', active: true},
       {language: 'नेपाली'},
-      {language: 'हिन्दी'},
+      // {language: 'हिन्दी'},
     ]
   });
 }

@@ -48,7 +48,9 @@
       <span class="input-group-btn">
         <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
       </span>
-      <input type="text" class="form-control" placeholder="Search questions...">
+      <form action="/search" method=GET >
+        <input type="text" class="form-control" name='q' placeholder="Search questions...">
+      </form>
     </div><!-- /input-group -->
   </div>
   <div class="col-xs-4 col-sm-6 col-lg-6">
@@ -60,9 +62,51 @@
     </div><!-- /input-group -->
   </div>
   <div class="col-md-4 col-lg-4">
-    <ul class="nav nav-pills pull-right">
-      {{#each languages.primary}}<li role="presentation"{{#if active}} class="active"{{/if}}><a href="#">{{language}}</a></li>{{/each}}
-    </ul>
+    {{!-- <ul class="nav nav-pills pull-right translation-links">
+      {{#each languages.primary}}
+      <li role="presentation"{{#if active}} class="active"{{/if}}>
+        <a href="#" data-lang="{{language}}">{{language}} {{active}}</a>
+      </li>
+      {{/each}}
+    </ul> --}}
+
+    <!-- Use CSS to replace link text with flag icons -->
+<ul class="translation-links nav nav-pills pull-right">
+  <li role="presentation" {{#if active}} class="active"{{/if}}>
+    <a href="#" class="nepali" data-lang="Nepali">नेपाली</a>
+  </li>
+  <li role="presentation"{{#if active}} class="active"{{/if}}>
+    <a href="#" class="english" data-lang="English">English</a>
+  </li>
+  
+</ul>
+
+<!-- Code provided by Google -->
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, autoDisplay: false}, 'google_translate_element');
+  }
+</script>
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" type="text/javascript"></script>
+
+<!-- Flag click handler -->
+<script type="text/javascript">
+    $('.translation-links a').click(function() {
+      var lang = $(this).data('lang');
+      $(this).parent().parent().find("li").removeClass("active");
+      $(this).parent().addClass("active");
+      
+      var $frame = $('.goog-te-menu-frame:first');
+      if (!$frame.size()) {
+        alert("Error: Could not find Google translate frame.");
+        return false;
+      }
+      $frame.contents().find('.goog-te-menu2-item span.text:contains('+lang+')').get(0).click();
+      return false;
+    });
+</script>
+
   </div>
 </div>
 </div>
