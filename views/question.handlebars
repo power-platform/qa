@@ -28,22 +28,35 @@
       <div class="date center">Posted: 12th July 2014</div>
       <hr>
       <div class="details center">
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-      cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-      proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      <p>{{question}}</p>
+      <p>Want to <a href="">add a translation</a>?</p>
       </div>
       <hr>
       <div class="answers center">
-        <p>There are no answers yet. Please check back soon.</p>
+        {{#if answers}}
+          {{#each answers}}
+            <div class="answer center">
+              <p>{{answer}}</p>
+              <p>Want to <a href="">add a translation</a>?</p>
+            </div>
+          {{/each}}
+        {{else}}
+          <p>There are no answers yet. Want to <a href="">add an answer</a>?</p>
+        {{/if}}
       </div>
       <hr>
 
       <h3>Explore more lessons</h3>
       <div class="row">
-        ....
+        {{#each relateds}}
+          <div class="col-xs-4">
+            <a href="question?id={{id}}">
+              <div class="panel panel-big-display center">
+                {{skill}}
+              </div>
+            </a>
+          </div>
+        {{/each}}
       </div> 
     </div>
   </div>
